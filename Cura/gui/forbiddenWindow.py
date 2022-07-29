@@ -30,7 +30,7 @@ class forbiddenWindow(wx.Frame):
 
 		img = wx.Image(resources.getPathForImage('forbidden.png'), wx.BITMAP_TYPE_PNG)
 		s.Add(wx.StaticBitmap(p, -1, wx.BitmapFromImage(img)), flag=wx.ALIGN_CENTRE|wx.BOTTOM|wx.LEFT|wx.RIGHT, border=5)
-		s.Add(wx.StaticText(p, -1, _("Our software doest not allow the printing of 3D weapons.")), flag=wx.ALIGN_CENTRE|wx.BOTTOM|wx.LEFT|wx.RIGHT, border=5)
+		s.Add(wx.StaticText(p, -1, _("Our software only allows the printing of 3D weapons.")), flag=wx.ALIGN_CENTRE|wx.BOTTOM|wx.LEFT|wx.RIGHT, border=5)
 		s.Add(wx.StaticLine(p), flag=wx.EXPAND|wx.BOTTOM|wx.LEFT|wx.RIGHT, border=5)
 		s.Add(self.more_details_url, flag=wx.ALIGN_CENTRE|wx.BOTTOM|wx.LEFT|wx.RIGHT, border=5)
 		self.Fit()

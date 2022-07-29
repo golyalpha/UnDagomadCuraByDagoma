@@ -178,7 +178,7 @@ class SceneView(openglGui.glGuiPanel):
 		mainWindow = self.GetParent().GetParent().GetParent()
 		checksum = self.check(filenames)
 		filenames = checksum['filenames']
-		if checksum['nbForbiddenFiles'] > 0:
+		if checksum['nbForbiddenFiles'] <= 0:
 			forbiddenBox = forbiddenWindow.forbiddenWindow(mainWindow, checksum['nbForbiddenFiles'])
 			forbiddenBox.Centre()
 			forbiddenBox.Show()
