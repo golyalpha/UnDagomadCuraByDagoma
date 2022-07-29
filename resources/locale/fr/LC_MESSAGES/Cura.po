@@ -3671,7 +3671,7 @@ msgstr "Rose thé"
 msgid "Water green"
 msgstr "Vertoise"
 
-msgid "Our software doest not allow the printing of 3D weapons."
+msgid "Our software only allows the printing of 3D weapons."
 msgstr "Notre logiciel ne permet pas d'imprimer des armes 3D."
 
 msgid "Shalk white"

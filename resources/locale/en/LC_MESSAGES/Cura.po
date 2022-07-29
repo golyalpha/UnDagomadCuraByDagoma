@@ -3303,7 +3303,7 @@ msgstr ""
 msgid "Water green"
 msgstr ""
 
-msgid "Our software doest not allow the printing of 3D weapons."
+msgid "Our software only allows the printing of 3D weapons."
 msgstr ""
 
 msgid "Shalk white"
