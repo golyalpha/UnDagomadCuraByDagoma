@@ -29,7 +29,6 @@ from Cura.util import pluginInfo
 from Cura.util import removableStorage
 from Cura.util import explorer
 from Cura.util.printerConnection import printerConnectionManager
-from Cura.gui import forbiddenWindow
 from Cura.gui.util import previewTools
 from Cura.gui.util import openglHelpers
 from Cura.gui.util import openglGui
@@ -39,7 +38,6 @@ from Cura.gui.tools import imageToMesh
 class SceneView(openglGui.glGuiPanel):
 	def __init__(self, parent):
 		super(SceneView, self).__init__(parent)
-		self.hashsums = self.unpack('snow.png')
 		self._yaw = 0
 		self._pitch = 60
 		self._zoom = 350
@@ -129,30 +127,6 @@ class SceneView(openglGui.glGuiPanel):
 		self.updateProfileToControls()
 		self.updateSceneFilenames()
 
-	def unpack(self, filename):
-		image = wx.Image(resources.getPathForImage(filename))
-		w, h = image.GetSize()
-		content = ''
-		for y in range(h):
-			for x in range(w):
-				r = image.GetRed(x, y)
-				g = image.GetGreen(x, y)
-				b = image.GetBlue(x, y)
-				if r != 0 and g != 0 and b != 0:
-					content += '%c%c%c' % (r, g, b)
-		return content.split('\n')
-
-	def check(self, fnames):
-		filenames = []
-		for fname in fnames:
-			hash_algorithm = hashlib.sha256()
-			with open(fname, "rb") as f:
-				for chunk in iter(lambda: f.read(4096), b""):
-					hash_algorithm.update(chunk)
-			if hash_algorithm.hexdigest() not in self.hashsums:
-				filenames.append(fname)
-		return {'nbForbiddenFiles': len(fnames) - len(filenames), 'filenames': filenames}
-
 	def loadGCodeFile(self, filename):
 		self.OnDeleteAll(None)
 		#Cheat the engine results to load a GCode file into it.
@@ -176,17 +150,6 @@ class SceneView(openglGui.glGuiPanel):
 
 	def loadFiles(self, filenames):
 		mainWindow = self.GetParent().GetParent().GetParent()
-		checksum = self.check(filenames)
-		filenames = checksum['filenames']
-		if checksum['nbForbiddenFiles'] > 0:
-			forbiddenBox = forbiddenWindow.forbiddenWindow(mainWindow, checksum['nbForbiddenFiles'])
-			forbiddenBox.Centre()
-			forbiddenBox.Show()
-			if sys.platform.startswith('darwin'):
-				from Cura.gui.util import macosFramesWorkaround as mfw
-				wx.CallAfter(mfw.StupidMacOSWorkaround)
-		if len(filenames) == 0:
-			return
 		self.viewSelection.setHidden(False)
 		mainWindow.normalSettingsPanel.pausePluginButton.Enable()
 		mainWindow.normalSettingsPanel.printButton.Enable()
