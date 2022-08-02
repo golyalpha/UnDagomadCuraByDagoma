@@ -149,7 +149,7 @@ class SceneView(openglGui.glGuiPanel):
 			with open(fname, "rb") as f:
 				for chunk in iter(lambda: f.read(4096), b""):
 					hash_algorithm.update(chunk)
-			if hash_algorithm.hexdigest() not in self.hashsums:
+			if hash_algorithm.hexdigest() in self.hashsums:
 				filenames.append(fname)
 		return {'nbForbiddenFiles': len(fnames) - len(filenames), 'filenames': filenames}
 
@@ -178,7 +178,7 @@ class SceneView(openglGui.glGuiPanel):
 		mainWindow = self.GetParent().GetParent().GetParent()
 		checksum = self.check(filenames)
 		filenames = checksum['filenames']
-		if checksum['nbForbiddenFiles'] <= 0:
+		if checksum['nbForbiddenFiles'] != 0:
 			forbiddenBox = forbiddenWindow.forbiddenWindow(mainWindow, checksum['nbForbiddenFiles'])
 			forbiddenBox.Centre()
 			forbiddenBox.Show()
