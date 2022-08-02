@@ -5,6 +5,7 @@ Before releasing a new version, please read the [CHECK file](https://github.com/
 ## About
 
 Cura by Dagoma was originally forked from Legacy Cura.
+Now it was forked again and UnDagoma'd.
 It is built with the following components:
 - [LegacyCura](https://github.com/daid/LegacyCura)
 - [CuraEngine](https://github.com/Ultimaker/CuraEngine)
