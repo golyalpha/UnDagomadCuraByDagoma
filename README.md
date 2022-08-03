@@ -1,4 +1,4 @@
-# Cura by Dagoma
+# UnDagoma'd Cura by Dagoma
 
 Before releasing a new version, please read the [CHECK file](https://github.com/dagoma3d/CuraByDagoma/blob/03d59610ab4fe7f50b081df5210855dce89d94b6/CHECK.md).
 
